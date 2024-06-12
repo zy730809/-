@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 类的基本定义与学习 -->
+    <script type="text/javascript">
+        // 定义类
+        class Shape {
+            name;
+            sides;
+            sideLength;
+            // #year表示私有变量
+            // #year;
+            constructor(name,sides,sideLength){
+                this.name = name;
+                this.sides = sides;
+                this.sideLength = sideLength;
+                // this.#year = year;
+            }
+            calcPerimeter(){
+                let zhouchang = this.sides * this.sideLength;
+                console.log("1--"+ zhouchang);
+                this.#somePrivateMethod();
+            }
+            // 私有方法与私有数据属性一样，名称也是以 # 开头，只能在类自己的方法中调用：
+            #somePrivateMethod(){
+                console.log("You called me?");
+            }
+        }
+        let square = new Shape("square",4,5);
+        square.calcPerimeter();
+    
+        // 实现类的继承
+        class childShape extends Shape{
+            sideLength;
+            //  如果子类有任何自己的初始化内容需要完成，它也必须先使用 super() 来调用父类的构造函数，并传递父类构造函数期望的任何参数。
+            constructor(sideLength){
+                super(square,4,sideLength);
+                this.sideLength = sideLength
+            }
+            calcArea(){
+                let mianji =  this.sideLength*this.sideLength;
+                // console.log("2--"+ mianji);
+                //  还可以使用JS的`Area: ${mianji}`
+                console.log(`Area: ${mianji}`);
+            }
+        }
+        let square1 = new childShape(5);
+        square1.calcPerimeter();
+        square1.calcArea();
+
+        // 实现类的封装
+
+    </script>
+    <script type="text/javascript">
+
+    </script>
+</body>
+</html>

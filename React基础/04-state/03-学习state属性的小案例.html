@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习state属性的小案例（完整版编写）</title>
+</head>
+<body>
+    <div id="example"></div>
+  
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+  
+    <script type="text/babel">
+        // 1-定义一个类式组件
+        class Weather extends React.Component{
+            // ------构造器只会执行一次（只写了一次<Weather></Weather>）
+            constructor(props){
+                super(props)
+                this.state = {
+                    isHot:true,
+                }
+                // 通过bind()函数改变函数的this的指向
+                this.changeWeather = this.changeWeather.bind(this)
+            }
+
+            // ---------render()调用1+n次，每次修改state都会重新渲染页面
+            // 重写父类render()函数
+            render(){
+                // ES6的赋值语句
+                const {isHot} = this.state
+                return <h2 id='title' onClick={this.changeWeather}>今天天气很{isHot ? "炎热":"凉爽"}</h2>
+            }
+
+            // 为什么changeWeather里面的this指向是undefined？
+            // changeWeather()只有被该类的实例对象调用的时候其this才会指向该类的实例对象，类中方法默认开启严格模式
+            // 将数据存放到state里面，更改state里面的数据就会引起虚拟DOM 的更改,从而数据驱动引起页面的更改
+            changeWeather(){
+                const isHot = this.state.isHot;
+                // 不可直接对state里面数据的修改，要借助一个内置API进行修改
+                // 这种修改是合并还是替换？从结果来看是合并的结果并非更新
+                this.setState({isHot:!isHot})
+            }
+        }
+
+
+        // 2-渲染组件到页面
+        ReactDOM.render(<Weather></Weather>,document.getElementById("example"));
+
+    </script>
+</body>
+</html>

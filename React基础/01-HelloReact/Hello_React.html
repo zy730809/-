@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>01_HelloReact</title>
+</head>
+
+<body>
+  <!--  首先准备一个容器-->
+  <div id="test"></div>
+
+  <!--react的核心库react.development.js，全局多了一个React对象-->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!--react的扩展库，用于支持react操作DOM，全局多了一个ReactDOM对象-->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!--引入babel，用于解析jsx语法为原生js语法-->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+
+  <!-- babel将jsx代码翻译为js代码，表明这里面写的是jsx，且由babel将jsx转换为js -->
+  <script type="text/babel">
+    // 1.创建一个虚拟DOM（使用的是jsx语法）
+    let vDOM = <h2>hello,react</h2> // jsx语法不需要加引号,因为不是字符串
+    console.log(vDOM,typeof vDOM)
+
+    // 2.渲染虚拟DOM到页面， ReactDOM.render(）这是一个替换动作
+    // render()接收两个参数，第一个参数是虚拟DOM，第二个参数是对应的真实DOM
+    ReactDOM.render(vDOM, document.getElementById('test'))
+
+  </script>
+</body>
+
+</html>

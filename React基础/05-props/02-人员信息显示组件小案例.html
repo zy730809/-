@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人员信息显示组件小案例</title>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../js/babel.min.js"></script>
+    <!-- prop-type，用于限制渲染标签时传递参数的类型、必要性  -->
+    <script type="text/javascript" src="../js/prop-types.js"></script>
+  
+    <script type="text/babel">
+        // 创建组件
+        class Person extends React.Component{
+            // state = {name:"Tom",age: 19,sex: '男'},从state内部读取，希望从外部传入数据
+
+            // 限制接收参数的类型及必要性
+            static propTypes = {
+                name: PropTypes.string.isRequired,
+                sex: PropTypes.string.isRequired,
+                age: PropTypes.number
+            }
+
+            // 重写父类render函数
+            render(){
+                // let {name,sex, age} = {name:'Tom', sex:'男', age:19}
+                let {name,sex, age} = this.props
+                return (
+                    <ul>
+                        <li>姓名:{name}</li>
+                        <li>性别:{sex}</li>
+                        <li>年龄:{age}</li>
+                    </ul>
+                ) 
+            }
+        }
+        // 人员信息(真实开发中一般都是向服务器发送请求获取数据)
+        let p1 = {
+            name: '张三',
+            age: 19,
+            sex: '男',
+        }
+        let p2 = {
+            name: '李四',
+            age: 21,
+            sex: '女',
+        }
+        // 渲染组件，向person组件传递数据的时候，react会自动将数据存储到props里面
+        // react + babel 允许使用对对象使用展开运算符
+        ReactDOM.render(<Person {...p1} />, document.getElementById('example1'))
+        ReactDOM.render(<Person {...p2} />, document.getElementById('example2'))
+    </script>
+</body>
+</html>

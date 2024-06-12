@@ -1,0 +1,136 @@
+## 什么是react?
+React 是一个用于构建用户界面的 JavaScript 库。
+    (1)是一个将数据渲染为 HTML 视图的开源 JS 库
+    (2)它遵循基于组件的方法，有助于构建可重用的 UI 组件
+    (3)它用于开发复杂的交互式的 web 和移动 UI
+    用于构建用户界面的JavaScript库(Facebook开发且开源)
+    1-发送请求获取数据
+    2-处理数据（过滤、整理格式等）
+    3-操作DOM呈现页面
+
+## 为什么要学习react?
+    1-原生JavaScript操作DOM繁琐，效率低(DOM-API操作UI)
+    2-使用javascript直接操作DOM,浏览器会进行大量的重绘和重排
+    3-原生JavaScript没有组件化编码方案，代码复用率低
+
+##React的特点
+    1-采用组件化模式，声明式编码，提高开发效率和组件复用率；
+    2-在React Native 中可以使用React语法进行移动端开发；
+    3-使用虚拟Dom + 优秀的Difiling算法，尽量减少页面操作。
+
+## 相关js库
+D:\文件夹管理-张小怡\张怡-面试准备工作\reactProject\React基础\js\react-dom.development.js
+D:\文件夹管理-张小怡\张怡-面试准备工作\reactProject\React基础\js\react.development.js
+D:\文件夹管理-张小怡\张怡-面试准备工作\reactProject\React基础\js\babel.min.js
+
+## babel的作用
+    1、ES6--ES5;
+    2、JSX--JS
+
+## 
+ <!-- XML早期用于存储和传输数据 -->
+  <student>
+    <name>Tom</name>
+    <age>19</age>
+  </student>
+
+ <!-- 现在一般使用JSON进行数据传输 -->
+"{
+    name:"Tom",
+    age:19
+}"
+
+## jsx语法总结
+    1、内容体不需要写双引号；
+    2、标签中混入JS表达式要用花括号{}；
+    3 样式的指定不要使用class,需要使用className;
+    4 jsx语法中的内联样式，要用style={{key:value}};
+    5 jsx要求有且只能有一个根标签，虚拟DOM只有一个根标签；
+    6、标签必须闭合，且jsx标签会转换为html标签；
+    7、标签首字母
+        （1）若小写字母开头，则转换该标签为html中同名元素，若html中不存在该标签则报错；
+        （2）若大写字母开头，则默认为组件
+
+ ## JS相关知识点再回顾
+    1、split将字符串通过","进行切割，然后转换为数组
+        let data = ['Angular','React','Vue']
+        let myData = "Angular,React,Vue"
+        myData.split(',') === data
+
+    2、join(), toString()可实现将数组转换为字符串
+        let data = ['Angular','React','Vue']
+        let myData = "Angular,React,Vue"
+        data.toString() === myData
+    3、arr.map((item)=>{
+        ; 对原数组元素逐个进行修改
+    })
+
+    4、对象展开运算符 {...对象}，要求必须包裹在花括号中才可以使用
+        // 定义一个对象 p1
+        let p1 = { name: 'Alice', age: 30, city: 'New York' };
+        // 使用展开运算符创建一个新的对象 p2，其中包含了 p1 对象的所有属性和值
+        let p2 = {...p1};
+        // 函数传参使用（对于不固定参数）
+        function sum(...numbers){
+            console.log('@',numbers);
+        }
+        console.log(sum(1,2,3,4));
+
+    5、arr.reduce()方法
+        ---数组去重+数组求和+扁平化数组
+        arr.reduce(callback(accumulator, currentValue, currentIndex, array), [initialValue])
+
+        （1）accumulator (累计器): 累加器累计回调的返回值; 它是上一次调用回调时返回的累积值，或者是初始值（如果提供了 initialValue）。
+        （2）currentValue (当前值): 数组中正在处理的当前元素。
+        （3）currentIndex (当前索引): 数组中正在处理的当前元素的索引。若提供了 initialValue，则起始索引号为 0，否则从索引 1 起始。
+        （4）array (原数组): 调用 reduce() 方法的数组。
+
+        1、数组累加求和
+            const numbers = [1, 2, 3, 4];
+            const sum = numbers.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+            }, 0);
+        
+
+console.log(sum); // 输出: 10
+
+## 模块与组件  模块化与组件化的理解
+    模块
+        1）向外提供特定功能的js程序,一般就是一个js 文件。
+        2）为什么要拆成模块:随着业务逻辑增加，代码越来越多且复杂。
+        3）作用: 复用js,简化js 的编写,提高js 运行效率。
+    组件
+        1）理解: 用来实现局部功能效果的代码和资源的集合(htmI/css/js/image 等等)。
+        2）为什么:一个界面的功能更复杂。
+        3）作用:复用编码,简化项目编码,提高运行效率。
+    模块化
+        当应用的js 都以模块来编写的,这个应用就是一个模块化的应用
+    组件化
+        当应用是以多组件的方式实现,这个应用就是一个组件化的应用
+
+## babel翻译以后自动开启严格模式 use strict
+
+## javaScript类知识点复习
+    https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Classes_in_JavaScript
+
+## 组件实例(类)三大核心属性1：组件的状态（state)
+    函数式组件---无state(简单组件)
+    类式式组件---有state(复杂组件)
+    state----将数据存放到state里面，更改state里面的数据就会引起虚拟DOM的更改,从而数据驱动引起页面的更改
+    后期会学习[hooks]
+    0-state是组件对象最重要的属性，值是一个对象;
+
+    1-不可直接对state里面数据的修改，要借助一个内置API setState()进行修改数据;
+        this.state.isHot = !isHot(xxx)
+        this.setState({isHot:!isHot})(√√√)
+
+    2-自定义函数都要写成 赋值语句+箭头函数;
+        保证自定义函数里面的this指向的是组件的实例对象
+
+    3-可以通过初始化状态，从而避免撰写构造器函数;
+        类里面直接变量赋值相当于在类的实例对象身上绑定一个属性
+        state = { isPig: true }
+
+## 组件实例三大核心属性2：props
+    基于展开运算符 批量传递Props
+

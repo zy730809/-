@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>虚拟DOM的两种创建方式</title>
+</head>
+<style>
+  .red {
+    color: red;
+  }
+</style>
+
+<body>
+  <div id="demo"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script>
+    let myID = 'abcd'
+    let myData = 'hello, world'
+  </script>
+
+  <!-- html排版：<h2 id='title'><span>myData<span><h2> -->
+
+  <!-- 方式一： 使用原生js创建虚拟DOM -->
+  <script type="text/javascript">
+    // react.createElement(标签名，标签属性，标签内容)，该API用于创建一个虚拟DOM节点
+    let vDOM1 = React.createElement('h1',{id:'title'},helloReact)
+    let vDOM2 = React.createElement('h2', {id: myID }, React.createElement('span', {}, myData)) 
+    ReactDOM.render(vDOM1, document.getElementById('test1'))
+  </script>
+
+  <!-- 方式二： 使用jsx===JavaScriptXML语法创建虚拟DOM -->
+  <!-- jsx相当于就是js的语法糖，一种简易的编写方式，使得编程人员可以更简单的创建HTML标签 -->
+  <script type="text/babel">
+    let vDOM =(
+      <h2 id={myID}>
+          <span className="red">{myData.toUpperCase()}</span>
+      </h2>
+    )
+    console.log('虚拟DOM',vDOM2);
+
+    ReactDOM.render(vDOM2, document.getElementById('test2'))
+  </script>
+</body>
+
+</html>
