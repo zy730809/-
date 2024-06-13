@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map对象的学习</title>
+</head>
+<body>
+    <!-- Map 对象保存键值对，并且能够记住键的原始插入顺序。任何值（对象或者原始值）都可以作为键或值 -->
+     <!-- 1、有序 2、Map对象的键值可以是任意类型 -->
+    <script>
+        // 实例方法
+        const map1 = new Map();
+        let map = new Map([
+            ['key1', 'value1'],
+            ['key2', 'value2'],
+            ['key3', 'value3']
+        ]);
+
+        // 1-set()向Map对象里面添加数据
+        map1.set('a', 1);
+        map1.set('b', 2);
+        map1.set('c', 3);
+        console.log(map1);
+
+        // 2-get()查询Map对象中对应的键值
+        map1.get("a");
+
+        // 3-has()查询Map对象中是否存在某个键值
+        console.log(map.has("a"));
+
+        // 4-delete()删除Map对象中某个键值对
+        map1.delete('b');
+
+        // 5-Map.prototype.entries()
+        // 返回一个新的迭代器对象，其包含 Map 对象中所有键值对 [key, value] 二元数组，以插入顺序排列。
+        let mapEntries =  map1.entries();
+        console.log(mapEntries);
+        console.log(mapEntries.next().value);
+        console.log(mapEntries.next().value);
+        // 使用for...ofj进行循环遍历
+        for (let [key, value] of map1.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+        // 使用迭代器进行循环遍历
+        while (!(entry = mapEntries.next()).done) {
+            let [key, value] = entry.value;
+            console.log(`${key}: ${value}`);
+        }
+
+        // 6-Map.prototype.forEach()
+        // 以插入顺序为 Map 对象中的每个键值对调用一次 callbackFn.
+        /**
+         *  callbackFn 接收三个参数：
+         * 当前的 value
+         * 当前的 key
+         * 正在被遍历的 Map 对象
+        */
+        // 如果为 forEach 提供了 thisArg 参数，则它将作为每一次 callback 的 this 值。
+        mapEntries.forEach((key,value)=>{
+            console.log(`${key}: ${value}`);
+        })
+        function logMapElements(value, key, map) {
+            console.log(`map.get('${key}') = ${value}`);
+        }
+        new Map([
+            ["foo", 3],
+            ["bar", {}],
+            ["baz", undefined],
+        ]).forEach(logMapElements);
+
+        // 7-Map.prototype.keys()
+        // Map 实例的 keys() 方法返回一个新的 map 迭代器对象，该对象包含了此 map 中每个元素的键，按插入顺序排列。
+        const iterator1 = map1.keys();
+        console.log(`Map.prototype.keys():${iterator1.next().value}`);
+
+        // 8-Map.prototype.values()
+        // Map 实例的 values() 方法返回一个新的 map 迭代器对象，该对象包含此 map 中每个元素的值，按插入顺序排列。
+        const iterator2 = map1.values();
+        console.log(iterator2.next().value);
+        console.log(`Map.prototype.values():${iterator2.next().value}`);
+
+    </script>
+    <!-- Map对象和Object之间的区别 -->
+    <!-- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map -->
+    <!-- 知识点：对象注入攻击 -->
+
+    <!-- 类 Map 浏览器 API -->
+     <!-- 浏览器类 Map 对象（或称为“maplike 对象”）是其行为在很多方面都类似于 Map 的 Web API 接口 -->
+</body>
+</html>
